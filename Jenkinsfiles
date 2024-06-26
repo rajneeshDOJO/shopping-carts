@@ -1,0 +1,39 @@
+pipeline{
+
+    agent any
+
+// uncomment the following lines by removing /* and */ to enable
+    tools{
+       maven 'maven' 
+    } 
+
+    stages{
+        stage('Build'){
+            steps{
+                echo 'This is the Build job'
+                sh 'mvn compile'
+            }
+        }
+        stage('Test'){
+            steps{
+                echo 'This is the Test job'
+                sh 'mvn test'
+            }
+        }
+        stage('Package'){
+            steps{
+                echo 'This is the Package job'
+                sh 'mvn package'
+
+            }
+        }
+    }
+    
+    post{
+        always{
+            echo 'This pipeline has completed...'
+        }
+        
+    }
+    
+}
